@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import GreenPage from './components/GreenPage';
+import YellowPage from './components/YellowPage';
 
-function App() {
+
+export const ColorContext = createContext('dark');
+
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ColorContext.Provider value={'light'}>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/yellowpage' element={<YellowPage />} />
+          <Route path='/greenpage' element={<GreenPage />} />
+        </Routes>
+      </BrowserRouter>
+    </ColorContext.Provider>
+
+    
   );
 }
 
